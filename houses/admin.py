@@ -13,4 +13,8 @@ class LocationAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
+admin.site.register(House, HouseAdmin)
+admin.site.register(Location, LocationAdmin)
+
+
 # Register your models here.

@@ -12,11 +12,18 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+OSGEO4W = "C:\\Program Files\\QGIS 3.28.2"
+os.environ['OSGEO4W_ROOT'] = OSGEO4W
+os.environ['GDAL_DATA'] = OSGEO4W + r"\share\gdal"
+os.environ['PROJ_LIB'] = OSGEO4W + r"\share\proj"
+os.environ['PATH'] = OSGEO4W + r"\bin;" + os.environ['PATH']
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-GDAL_LIBRARY_PATH = r'C:\Program Files\QGIS 3.28.3\bin\gdal306.dll'
-GEOS_LIBRARY_PATH = r'C:\Program Files\QGIS 3.28.3\bin\geos_c.dll'
+GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH', None)
+GEOS_LIBRARY_PATH = os.environ.get('GEOS_LIBRARY_PATH', None)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -41,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'rest_framework',
+    'rest_framework_gis',
     'houses',
 ]
 
@@ -125,7 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

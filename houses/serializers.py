@@ -1,7 +1,14 @@
+from django.contrib.gis.geos import Point
+from django.core.serializers import serialize
 from rest_framework import serializers
-from .models import House
+from rest_framework_gis.fields import GeometrySerializerMethodField
 
-class HouseSerializer(serializers.ModelSerializer):
+from .models import House
+from rest_framework_gis.serializers import GeoFeatureModelSerializer
+
+
+class HouseSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = House
-        fields = ('id', 'name', 'description', 'price', 'location', 'image', 'created_at', 'updated_at')
+        fields = "__all__"
+        geo_field = "location"

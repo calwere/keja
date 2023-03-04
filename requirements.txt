@@ -2,7 +2,10 @@ asgiref==3.6.0
 Django==4.1.7
 django-cors-headers==3.14.0
 djangorestframework==3.14.0
+GDAL @ https://download.lfd.uci.edu/pythonlibs/archived/GDAL-3.4.3-cp311-cp311-win_amd64.whl
 psycopg2-binary==2.9.5
 pytz==2022.7.1
 sqlparse==0.4.3
 tzdata==2022.7
+
+djangorestframework-gis~=1.0
