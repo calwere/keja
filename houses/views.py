@@ -12,3 +12,5 @@ class HouseList(generics.ListAPIView):
 class HouseDetail(generics.RetrieveAPIView):
     queryset = House.objects.all()
     serializer_class = HouseSerializer
+
+    
